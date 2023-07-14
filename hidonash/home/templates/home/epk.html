@@ -5,5 +5,9 @@
 {% block body_class %}epk{% endblock %}
 
 {% block content %}
+    <h1>Hidonash</h1>
     {{ page.bio|richtext }}
+    {% if page.image %}
+        <img src="{{ page.rendition_url }}" alt="{{ page.image.alt }}" />
+    {% endif %}
 {% endblock %}
