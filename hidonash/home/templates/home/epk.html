@@ -40,6 +40,10 @@
 
     <div class='block embeds'>
         <h2>Discography</h2>
+        {% for bandcamp_embed in page.bandcamp_embeds.all %}
+        <iframe style="border: 0; width: 350px; height: 350px;" src="{{ bandcamp_embed.url }}" title="{{ bandcamp_embed.title }}" seamless></iframe>
+        {% endfor %}
+        <!--
         <div class="track-grid">
             <div class="track-item">
                 <iframe style="border: 0; width: 350px; height: 350px;" src="{{ page.spotlight_track_1 }}" title="Spotlight Track 1" seamless></iframe>
@@ -53,6 +57,8 @@
                 <iframe style="border: 0; width: 350px; height: 350px;" src="{{ page.spotlight_track_3 }}" title="Spotlight Track 3" seamless></iframe>
             </div>
         </div>
+        --!>
+
 
         <h2>DJ-Mixes</h2>
         <div class="soundcloud-grid">

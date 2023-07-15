@@ -1,8 +1,10 @@
 from django.db import models
 
-from wagtail.models import Page
-from wagtail.fields import RichTextField
-from wagtail.admin.panels import FieldPanel
+from wagtail.models import Page, Orderable
+from wagtail.fields import RichTextField, StreamField
+from wagtail.admin.panels import FieldPanel, InlinePanel
+from wagtail import blocks
+from modelcluster.fields import ParentalKey
 
 
 class Epk(Page):
@@ -17,9 +19,6 @@ class Epk(Page):
             related_name="+",
         )
     image_caption = models.CharField(max_length=50, blank=True)
-    spotlight_track_1 = models.URLField(blank=True)
-    spotlight_track_2 = models.URLField(blank=True)
-    spotlight_track_3 = models.URLField(blank=True)
 
     spotlight_mix_1 = models.URLField(blank=True)
     spotlight_mix_2 = models.URLField(blank=True)
@@ -32,9 +31,7 @@ class Epk(Page):
         FieldPanel('bio'),
         FieldPanel('image'),
         FieldPanel('image_caption'),
-        FieldPanel('spotlight_track_1'),
-        FieldPanel('spotlight_track_2'),
-        FieldPanel('spotlight_track_3'),
+        InlinePanel('bandcamp_embeds', label="Bandcamp Embed"),
         FieldPanel('spotlight_mix_1'),
         FieldPanel('spotlight_mix_2'),
         FieldPanel('video'),
@@ -42,5 +39,18 @@ class Epk(Page):
 
     @property
     def rendition_url(self):
-        url = self.image.get_rendition('fill-800x500|jpegquality-60').url
+        url = self.image.get_rendition('fill-800x800|jpegquality-60').url
         return url
+
+
+class BandcampTracks(Orderable):
+    page = ParentalKey(Epk,
+                       on_delete=models.CASCADE,
+                       related_name='bandcamp_embeds')
+    title = models.CharField(max_length=50, default='')
+    url = models.URLField()
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('url'),
+    ]
