@@ -6,8 +6,82 @@
 
 {% block content %}
     <h1>Hidonash</h1>
-    {{ page.bio|richtext }}
-    {% if page.image %}
-        <img src="{{ page.rendition_url }}" alt="{{ page.image.alt }}" />
-    {% endif %}
+
+    <div class='intro'>
+        <div class="quote">
+            {{ page.quote|richtext }}
+        </div>
+
+        <div class="bio">
+            {{ page.bio|richtext }}
+        </div>
+
+        <div class="image">
+            {% if page.image %}
+                <img src="{{ page.rendition_url }}"
+                     alt="{{ page.image.alt }}" 
+                     {% if myrendition.focal_point %}
+                         data-focus-x="{{ myrendition.focal_point.centroid.x }}"
+                         data-focus-y="{{ myrendition.focal_point.centroid.y }}"
+                         data-focus-width="{{ myrendition.focal_point.width }}"
+                         data-focus-height="{{ myrendition.focal_point.height }}"
+                     {% endif %}
+                />
+            {% endif %}
+        </div>
+    </div>
+
+    <div class='embeds'>
+        <h2>Discography</h2>
+        <div class="spotlight-grid">
+            <div class="spotlight-item">
+                <iframe style="border: 0; width: 350px; height: 350px;" src="{{ page.spotlight_track_1 }}" title="Spotlight Track 1" seamless></iframe>
+            </div>
+
+            <div class="spotlight-item">
+                <iframe style="border: 0; width: 350px; height: 350px;" src="{{ page.spotlight_track_2 }}" title="Spotlight Track 2" seamless></iframe>
+            </div>
+
+            <div class="spotlight-item">
+                <iframe style="border: 0; width: 350px; height: 350px;" src="{{ page.spotlight_track_3 }}" title="Spotlight Track 3" seamless></iframe>
+            </div>
+        </div>
+
+        <h2>DJ-Mixes</h2>
+        <div class="spotlight-grid">
+            <div class="spotlight-item">
+                <iframe style="border: 0; width: 350px; height: 350px;" src="{{ page.spotlight_mix_1 }}" title="Spotlight Mix 1" seamless></iframe>
+            </div>
+
+            <div class="spotlight-item">
+                <iframe style="border: 0; width: 350px; height: 350px;" src="{{ page.spotlight_mix_2 }}" title="Spotlight Mix 2" seamless></iframe>
+            </div>
+        </div>
+
+        <h2>Video</h2>
+        <div class="video-embed">
+            <iframe style="border: 0; width: 350px; height: 350px;" src="{{ page.video }}" title="Video" seamless></iframe>
+        </div>
+    <div class='embeds'>
+    <h2>Contact</h2>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <p>mail@hidonash.com</p>
+    <ul class="social-icons">
+        <li>
+            <a href="https://www.instagram.com/hidonash" target="_blank", title=instagram>
+                <i class="fab fa-instagram"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://soundcloud.com/hidonash" target="_blank", title= soundcloud>
+                <i class="fab fa-soundcloud"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://hidonash.bandcamp.com/" target="_blank", title=bandcamp>
+                <i class="fab fa-bandcamp"></i>
+            </a>
+        </li>
+    </ul>
+
 {% endblock %}
