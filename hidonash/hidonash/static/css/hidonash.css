@@ -1,42 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/* Applying the font */
 body {
-  background-color: black;
-  color: lightgrey;
+    padding: 5%;
+    font-family: 'Bitter', serif;
+    font-size: 1.2em;
+    background: black;
+    color: #fffbeb;
 }
 
-.container {
-  height: 100%;
+h1 {
+  font-family: "Merriweather", serif;
+  font-size: 60px;
+  color: #333333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  border-bottom: 4px solid #333333;
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-size: 36px;
+  color: #333333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: left;
+  border-bottom: 2px solid #333333;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.block {
+    padding-top: 2%
+}
+
+.quote {
+    width: 100%;
+    text-align: center;
+}
+
+.quote-text {
+    font-weight: bold;
+    font-size: 1.4em;
+}
+
+.quote-author {
+    font-size: 1em;
+    font-style: italic;
 }
 
 .intro {
-  width: 100%;
-  height: 66.66%;
+    width: 100%;
 }
 
 .embeds {
-  width: 100%;
-  height: 33.33%;
+    clear: both;
+    width: 100%;
 }
 
 .bio {
-  width: 50%;
-  float: left;
+    width: 50%;
+    float: left;
+}
+
+.image {
+    width: 50%;
+    float: right;
+    position: relative;
+}
+
+.caption {
+    transform: translateX(35%);
+    color: #333333;
 }
 
 /* Clear floats to ensure proper layout */
 .clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
-.spotlight-grid {
+.track-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
 }
 
-.spotlight-item {
+.track-item {
     width: 100%;
+    border: 0;
+    width: 350px;
+    height: 350px;
+}
+
+.soundcloud-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-gap: 20px;
+}
+
+.soundcloud-item {
+    width: 100%;
+    border: 0;
+    width: 500px;
 }
 
 .social-icons {
@@ -48,8 +117,18 @@ body {
 
 .social-icons li {
     margin-right: 10px;
+    padding-top: 2%;
 }
 
-.social-icons li:last-child {
-    margin-right: 0;
+.mail-link {
+    color: #fffbeb;
+}
+
+.social-icons li a {
+    font-size: 24px;
+}
+
+.social-icons li a:visited,
+.mail-link:visited {
+    color: #fffbeb;
 }
