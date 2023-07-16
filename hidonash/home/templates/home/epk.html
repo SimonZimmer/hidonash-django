@@ -70,8 +70,8 @@
 
     <h2>Contact</h2>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <a href="mailto:mail@hidonash.com" class="mail-link">mail@hidonash.com</a>
-    <ul class="social-icons">
+    <a href="mailto:mail@hidonash.com" class="clickable-link mail-link">mail@hidonash.com</a>
+    <ul class="clickable-link social-icons">
         <li>
             <a href="https://www.instagram.com/hidonash" target="_blank", title=instagram>
                 <i class="fab fa-instagram"></i>
@@ -93,6 +93,29 @@
             </a>
         </li>
     </ul>
+
+    <h2>Assets</h2>
+    {% if page.rider %}
+        <div class="download-link">
+            <a class="clickable-link"
+               href="{{ page.rider.url }}"
+               download>
+               <i class="fas fa-download"></i>
+               {{ page.rider.title }}
+            </a>
+        </div>
+    {% endif %}
+
+    {% if page.press_pics %}
+        <div class="download-link">
+            <a class="clickable-link"
+               href="{{ page.press_pics.url }}"
+               download>
+               <i class="fas fa-download"></i>
+               {{ page.press_pics.title }}
+            </a>
+        </div>
+    {% endif %}
 </div>
 
 {% endblock %}

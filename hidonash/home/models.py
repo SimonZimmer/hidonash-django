@@ -5,6 +5,7 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail import blocks
 from modelcluster.fields import ParentalKey
+from wagtail.documents.models import Document
 
 
 class Epk(Page):
@@ -17,21 +18,39 @@ class Epk(Page):
             blank=False,
             on_delete=models.SET_NULL,
             related_name="+",
-        )
+            )
     image_caption = models.CharField(max_length=50, blank=True)
+
+    rider = models.ForeignKey(
+            Document,
+            on_delete=models.SET_NULL,
+            null=True,
+            blank=True,
+            related_name='+'
+            )
+
+    press_pics = models.ForeignKey(
+            Document,
+            on_delete=models.SET_NULL,
+            null=True,
+            blank=True,
+            related_name='+'
+            )
 
     video = models.URLField(blank=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('quote_text'),
-        FieldPanel('quote_author'),
-        FieldPanel('bio'),
-        FieldPanel('image'),
-        FieldPanel('image_caption'),
-        InlinePanel('bandcamp_embeds', label="Bandcamp Embed"),
-        InlinePanel('soundcloud_embeds', label="Soundcloud Embed"),
-        FieldPanel('video'),
-    ]
+            FieldPanel('quote_text'),
+            FieldPanel('quote_author'),
+            FieldPanel('bio'),
+            FieldPanel('image'),
+            FieldPanel('image_caption'),
+            InlinePanel('bandcamp_embeds', label="Bandcamp Embed"),
+            InlinePanel('soundcloud_embeds', label="Soundcloud Embed"),
+            FieldPanel('video'),
+            FieldPanel('rider'),
+            FieldPanel('press_pics'),
+            ]
 
     @property
     def rendition_url(self):
@@ -47,9 +66,9 @@ class BandcampTracks(Orderable):
     url = models.URLField()
 
     panels = [
-        FieldPanel('title'),
-        FieldPanel('url'),
-    ]
+            FieldPanel('title'),
+            FieldPanel('url'),
+            ]
 
 
 class SoundcloudTracks(Orderable):
@@ -60,6 +79,6 @@ class SoundcloudTracks(Orderable):
     url = models.URLField()
 
     panels = [
-        FieldPanel('title'),
-        FieldPanel('url'),
-    ]
+            FieldPanel('title'),
+            FieldPanel('url'),
+            ]

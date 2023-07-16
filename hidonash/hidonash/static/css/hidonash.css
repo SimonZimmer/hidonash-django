@@ -137,13 +137,19 @@ img {
 }
 
 .social-icons li a {
+    color: #fffbeb;
     padding-left:0;
     font-size: 24px;
 }
 
-.social-icons li a:visited,
-.mail-link:visited {
+.clickable-link,
+.clickable-link:visited {
     color: #fffbeb;
+    text-decoration: none;
+}
+
+.download-link {
+    margin-bottom: 1em;
 }
 
 .youtube-embed {
