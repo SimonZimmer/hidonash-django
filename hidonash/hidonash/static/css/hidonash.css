@@ -89,17 +89,15 @@ img {
     clear: both;
 }
 
-.track-grid {
+.bandcamp-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 20px;
 }
 
 .bandcamp-embed {
-    width: 100%;
+    width: 350px;
     border: 0;
-    min-width: 100px;
-    min-height: 100px;
 }
 
 .soundcloud-grid {
@@ -109,13 +107,13 @@ img {
 }
 
 .soundcloud-embed {
-    width: 700px; /* Set width to 100% of viewport width by default */
+    width: 700px;
     border: 0;
 }
 
 @media (max-width: 800px) {
   .soundcloud-embed {
-    width: 85vw; /* Set width to 100% of viewport width for viewport widths below 500px */
+    width: 85vw;
   }
 }
 
