@@ -1,0 +1,8 @@
+{% if file %}
+    <div class="download-link">
+        <a class="clickable-link" href="{{ file.url }}" download>
+            <i class="fas fa-download"></i>
+            {{ file.title }}
+        </a>
+    </div>
+{% endif %}

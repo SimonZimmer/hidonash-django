@@ -1,0 +1,14 @@
+<div class="block image">
+    {% if image %}
+        <img src="{{ rendition_url }}"
+             alt="{{ image.alt }}"
+             {% if myrendition.focal_point %}
+                 data-focus-x="{{ myrendition.focal_point.centroid.x }}"
+                 data-focus-y="{{ myrendition.focal_point.centroid.y }}"
+                 data-focus-width="{{ myrendition.focal_point.width }}"
+                 data-focus-height="{{ myrendition.focal_point.height }}"
+             {% endif %}
+             />
+        <div class="caption">{{ image_caption }}</div>
+    {% endif %}
+</div>
