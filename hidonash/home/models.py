@@ -20,9 +20,6 @@ class Epk(Page):
         )
     image_caption = models.CharField(max_length=50, blank=True)
 
-    spotlight_mix_1 = models.URLField(blank=True)
-    spotlight_mix_2 = models.URLField(blank=True)
-
     video = models.URLField(blank=True)
 
     content_panels = Page.content_panels + [
@@ -32,8 +29,7 @@ class Epk(Page):
         FieldPanel('image'),
         FieldPanel('image_caption'),
         InlinePanel('bandcamp_embeds', label="Bandcamp Embed"),
-        FieldPanel('spotlight_mix_1'),
-        FieldPanel('spotlight_mix_2'),
+        InlinePanel('soundcloud_embeds', label="Soundcloud Embed"),
         FieldPanel('video'),
     ]
 
@@ -47,6 +43,19 @@ class BandcampTracks(Orderable):
     page = ParentalKey(Epk,
                        on_delete=models.CASCADE,
                        related_name='bandcamp_embeds')
+    title = models.CharField(max_length=50, default='')
+    url = models.URLField()
+
+    panels = [
+        FieldPanel('title'),
+        FieldPanel('url'),
+    ]
+
+
+class SoundcloudTracks(Orderable):
+    page = ParentalKey(Epk,
+                       on_delete=models.CASCADE,
+                       related_name='soundcloud_embeds')
     title = models.CharField(max_length=50, default='')
     url = models.URLField()
 

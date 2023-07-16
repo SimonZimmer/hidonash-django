@@ -5,102 +5,94 @@
 {% block body_class %}epk{% endblock %}
 
 {% block content %}
-    <h1 class='title'>Hidonash</h1>
+<h1 class='title'>Hidonash</h1>
 
-    <div class='block intro'>
-        <div class="quote">
-            <div class="quote-text">
-                {{ page.quote_text|richtext }}
-            </div>
-            <div class="quote-author">
-                {{ page.quote_author|richtext }}
-            </div>
+<div class='block intro'>
+    <div class="quote">
+        <div class="quote-text">
+            {{ page.quote_text|richtext }}
         </div>
-
-        <h2>Bio</h2>
-        <div class="block bio">
-            {{ page.bio|richtext }}
-        </div>
-
-        <div class="block image">
-            {% if page.image %}
-                <img src="{{ page.rendition_url }}"
-                     alt="{{ page.image.alt }}" 
-                     {% if myrendition.focal_point %}
-                         data-focus-x="{{ myrendition.focal_point.centroid.x }}"
-                         data-focus-y="{{ myrendition.focal_point.centroid.y }}"
-                         data-focus-width="{{ myrendition.focal_point.width }}"
-                         data-focus-height="{{ myrendition.focal_point.height }}"
-                     {% endif %}
-                />
-                <div class="caption">{{ page.image_caption}}</div>
-            {% endif %}
+        <div class="quote-author">
+            {{ page.quote_author|richtext }}
         </div>
     </div>
 
-    <div class='block embeds'>
-        <h2>Discography</h2>
-        {% for bandcamp_embed in page.bandcamp_embeds.all %}
-        <iframe style="border: 0; width: 350px; height: 350px;" src="{{ bandcamp_embed.url }}" title="{{ bandcamp_embed.title }}" seamless></iframe>
+    <h2>Bio</h2>
+    <div class="block bio">
+        {{ page.bio|richtext }}
+    </div>
+
+    <div class="block image">
+        {% if page.image %}
+        <img src="{{ page.rendition_url }}"
+             alt="{{ page.image.alt }}" 
+             {% if myrendition.focal_point %}
+             data-focus-x="{{ myrendition.focal_point.centroid.x }}"
+             data-focus-y="{{ myrendition.focal_point.centroid.y }}"
+             data-focus-width="{{ myrendition.focal_point.width }}"
+             data-focus-height="{{ myrendition.focal_point.height }}"
+             {% endif %}
+             />
+        <div class="caption">{{ page.image_caption}}</div>
+        {% endif %}
+    </div" >
+</div>
+
+<div class='block embeds'>
+    <h2>Discography</h2>
+    {% for bandcamp_embed in page.bandcamp_embeds.all %}
+    <iframe class="bandcamp-embed"
+            src="{{ bandcamp_embed.url }}"
+            title="{{ bandcamp_embed.title }}"
+            frameborder="0">
+    </iframe>
+    {% endfor %}
+
+    <h2>DJ-Mixes</h2>
+    <div class="soundcloud-grid">
+        {% for soundcloud_embed in page.soundcloud_embeds.all %}
+        <iframe class="soundcloud-embed"
+                src="{{ soundcloud_embed.url }}"
+                title="{{ soundcloud_embed.title }}"
+                frameborder="0">
+        </iframe>
         {% endfor %}
-        <!--
-        <div class="track-grid">
-            <div class="track-item">
-                <iframe style="border: 0; width: 350px; height: 350px;" src="{{ page.spotlight_track_1 }}" title="Spotlight Track 1" seamless></iframe>
-            </div>
-
-            <div class="track-item">
-                <iframe style="border: 0; width: 350px; height: 350px;" src="{{ page.spotlight_track_2 }}" title="Spotlight Track 2" seamless></iframe>
-            </div>
-
-            <div class="track-item">
-                <iframe style="border: 0; width: 350px; height: 350px;" src="{{ page.spotlight_track_3 }}" title="Spotlight Track 3" seamless></iframe>
-            </div>
-        </div>
-        --!>
-
-
-        <h2>DJ-Mixes</h2>
-        <div class="soundcloud-grid">
-            <div class="soundcloud-item">
-                <iframe style="border: 0; width: 700px" src="{{ page.spotlight_mix_1 }}" title="Spotlight Mix 1" seamless></iframe>
-            </div>
-
-            <div class="soundcloud-item">
-                <iframe style="border: 0; width: 700px" src="{{ page.spotlight_mix_2 }}" title="Spotlight Mix 2" seamless></iframe>
-            </div>
-        </div>
-
-        <h2>Video</h2>
-        <div class="video-embed">
-            <iframe style="border: 0; width: 350px; height: 350px;" src="{{ page.video }}" title="Video" seamless></iframe>
-        </div>
-
-        <h2>Contact</h2>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <a href="mailto:mail@hidonash.com" class="mail-link">mail@hidonash.com</a>
-        <ul class="social-icons">
-            <li>
-                <a href="https://www.instagram.com/hidonash" target="_blank", title=instagram>
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </li>
-            <li>
-                <a href="https://soundcloud.com/hidonash" target="_blank", title= soundcloud>
-                    <i class="fab fa-soundcloud"></i>
-                </a>
-            </li>
-            <li>
-                <a href="https://hidonash.bandcamp.com/" target="_blank", title=bandcamp>
-                    <i class="fab fa-bandcamp"></i>
-                </a>
-            </li>
-            <li>
-                <a href="https://open.spotify.com/artist/1GYtL1LfNSikgQm2Xxdday" target="_blank" title="Spotify">
-                    <i class="fab fa-spotify"></i>
-                </a>
-            </li>
-        </ul>
     </div>
+
+    <h2>Video</h2>
+    <div class="video">
+        <iframe class="youtube-embed"
+                src="{{ page.video }}"
+                title="Video"
+                frameborder="0">
+        </iframe>
+    </div>
+
+    <h2>Contact</h2>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <a href="mailto:mail@hidonash.com" class="mail-link">mail@hidonash.com</a>
+    <ul class="social-icons">
+        <li>
+            <a href="https://www.instagram.com/hidonash" target="_blank", title=instagram>
+                <i class="fab fa-instagram"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://soundcloud.com/hidonash" target="_blank", title= soundcloud>
+                <i class="fab fa-soundcloud"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://hidonash.bandcamp.com/" target="_blank", title=bandcamp>
+                <i class="fab fa-bandcamp"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://open.spotify.com/artist/1GYtL1LfNSikgQm2Xxdday" target="_blank" title="Spotify">
+                <i class="fab fa-spotify"></i>
+            </a>
+        </li>
+    </ul>
+</div>
 
 {% endblock %}
