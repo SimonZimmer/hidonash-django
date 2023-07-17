@@ -11,8 +11,11 @@ RUN pip install gunicorn
 COPY . /code/
 WORKDIR /code/
 
-RUN python manage.py migrate
+ENTRYPOINT ["./entrypoint.sh"]
 
 RUN useradd wagtail
 RUN chown -R wagtail /code
+
+EXPOSE 8000
+
 USER wagtail

@@ -4,44 +4,26 @@ services:
   hidonash:
     container_name: hidonash
     build: ./hidonash
-    command: gunicorn hidonash.wsgi:application --bind 0.0.0.0:8000
+    command: "gunicorn -w 1 -b :5000 hidonash:hidonash --reload"
     restart: unless-stopped
     expose:
       - 8000
     environment:
-      - DEBUG=0
-      - SECRET_KEY=asuperS3cretK$yshouldgohere
+      - DEBUG=1
+      - SECRET_KEY=mysecret
       - DJANGO_SETTINGS_MODULE=hidonash.settings.production
     volumes:
       - ./data/static_volume:/code/static
-    networks:
-      - wagtailnet
 
   nginx:
-    container_name: Nginx
-    build: ./nginx
-    restart: unless-stopped
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-    networks:
-      - wagtailnet
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-
-  certbot:
-    container_name: CertBot
-    image: certbot/certbot
-    restart: unless-stopped
-    volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-    networks:
-      - wagtailnet
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-
-
-networks:
-  wagtailnet:
+      image: nginx:1.15-alpine
+      restart: always
+      ports:
+          - "80:80"
+          - "443:443"
+      volumes:
+          - ./hidonash/hidonash/static:/code/static/
+          - ./nginx:/etc/nginx/conf.d
+      command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+      depends_on:
+           - app

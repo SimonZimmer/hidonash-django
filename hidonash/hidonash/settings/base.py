@@ -166,3 +166,5 @@ WAGTAILSEARCH_BACKENDS = {
 WAGTAILADMIN_BASE_URL = "http://example.com"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+SECRET_KEY = 'asuperS3cretK$yshouldgohere'
