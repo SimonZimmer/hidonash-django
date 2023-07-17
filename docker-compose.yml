@@ -1,29 +1,11 @@
 version: '3.7'
 
 services:
-  hidonash:
-    container_name: hidonash
-    build: ./hidonash
-    command: "gunicorn -w 1 -b :5000 hidonash:hidonash --reload"
-    restart: unless-stopped
-    expose:
-      - 8000
-    environment:
-      - DEBUG=1
-      - SECRET_KEY=mysecret
-      - DJANGO_SETTINGS_MODULE=hidonash.settings.production
+  web:
+    build: ./app
     volumes:
-      - ./data/static_volume:/code/static
-
-  nginx:
-      image: nginx:1.15-alpine
-      restart: always
-      ports:
-          - "80:80"
-          - "443:443"
-      volumes:
-          - ./hidonash/hidonash/static:/code/static/
-          - ./nginx:/etc/nginx/conf.d
-      command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-      depends_on:
-           - app
+      - ./app/:/usr/src/app/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env.dev
