@@ -3,6 +3,11 @@ LABEL maintainer="mail@hidonash.com"
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV APP_HOME=/home/app/hidonash
+RUN mkdir $APP_HOME
+RUN mkdir $APP_HOME/static
+RUN mkdir $APP_HOME/media
+WORKDIR $APP_HOME
 
 COPY . /usr/src/app
 WORKDIR /usr/src/app
@@ -16,4 +21,4 @@ RUN pip install -r ./requirements.txt
 
 ENTRYPOINT ["sh", "/usr/src/app/entrypoint.sh"]
 
-EXPOSE 5000
+EXPOSE 8000

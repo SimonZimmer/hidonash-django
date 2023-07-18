@@ -21,11 +21,17 @@ services:
       - POSTGRES_DB=hello_django
 
   nginx:
-    build: ./nginx
+    image: nginx:1.15-alpine
+    restart: always
     ports:
-      - 1337:80
+        - 80:80
+        - 443:443
+    volumes:
+        - ./app/hidonash/static:/static/
+        - ./nginx:/etc/nginx/conf.d
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     depends_on:
-      - web
+         - web
 
 volumes:
   postgres_data:
