@@ -16,4 +16,4 @@ RUN pip install -r ./requirements.txt
 
 ENTRYPOINT ["sh", "/usr/src/app/entrypoint.sh"]
 
-EXPOSE 5000
+EXPOSE 8000
