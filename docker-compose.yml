@@ -3,10 +3,12 @@ version: '3.7'
 services:
   web:
     build: ./app
+    command: gunicorn app.wsgi:application --bind 0.0.0.0:8000
+    restart: unless-stopped
     volumes:
-      - ./app/:/usr/src/app/
-    expose:
-      - 8000
+      - ./app/static:/home/app/web/static
+    ports:
+      - 8000:8000
     env_file:
       - ./.env.dev
     depends_on:
@@ -15,23 +17,19 @@ services:
     image: postgres:13.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_USER=hello_django
-      - POSTGRES_PASSWORD=hello_django
-      - POSTGRES_DB=hello_django
+    env_file:
+      - ./.env.dev.db
 
   nginx:
-    image: nginx:1.15-alpine
-    restart: always
-    ports:
-        - 80:80
-        - 443:443
-    volumes:
-        - ./app/hidonash/static:/static/
-        - ./nginx:/etc/nginx/conf.d
+    build: ./nginx
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    restart: unless-stopped
+    volumes:
+      - ./app/static:/home/app/web/static
+    ports:
+      - 80:80
     depends_on:
-         - web
+      - web
 
 volumes:
   postgres_data:

@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/* Applying the font */
+body {
+    padding: 5%;
+    font-family: 'Bitter', serif;
+    font-size: 1.2em;
+    background: black;
+    color: #fffbeb;
+}
+
+h1 {
+    font-family: "Merriweather", serif;
+    font-size: 50px;
+    color: #333333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    border-bottom: 4px solid #333333;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 36px;
+    color: #333333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: left;
+    border-bottom: 2px solid #333333;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.block {
+    padding-top: 2%
+}
+
+.quote {
+    width: 100%;
+    text-align: center;
+}
+
+.quote-text {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.4em;
+}
+
+.quote-author {
+    font-size: 1em;
+    font-style: italic;
+}
+
+.intro {
+    width: 100%;
+}
+
+.embeds {
+    clear: both;
+    width: 100%;
+}
+
+.bio {
+    width: 50%;
+    float: left;
+}
+
+.image {
+    width: 50%;
+    float: right;
+    position: relative;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.caption {
+    transform: translateX(35%);
+    color: #333333;
+}
+
+/* Clear floats to ensure proper layout */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.bandcamp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.bandcamp-embed {
+    width: 350px;
+    border: 0;
+}
+
+.soundcloud-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(700px, 1fr));
+    gap: 20px;
+}
+
+.soundcloud-embed {
+    width: 700px;
+    border: 0;
+}
+
+@media (max-width: 800px) {
+  .soundcloud-embed {
+    width: 85vw;
+  }
+}
+
+.social-icons {
+    list-style: none;
+    margin: 0;
+    left: 0;
+    display: flex;
+    padding-left:0;
+}
+
+.social-icons li {
+    margin-right: 3%;
+    padding-top: 2%;
+}
+
+.mail-link {
+    color: #fffbeb;
+}
+
+.social-icons li a {
+    color: #fffbeb;
+    padding-left:0;
+    font-size: 24px;
+}
+
+.clickable-link,
+.clickable-link:visited {
+    color: #fffbeb;
+    text-decoration: none;
+}
+
+.download-link {
+    margin-bottom: 1em;
+}
+
+.youtube-embed {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+}
+
+.bandcamp-embed {
+    aspect-ratio: 1 / 1;
+    width: 20%;
+}
+
+.soundcloud-embed {
+    aspect-ratio: 4 / 1;
+    max-width: 100%;
+}
