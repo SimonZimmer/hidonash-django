@@ -7,7 +7,6 @@ from wagtail import blocks
 from modelcluster.fields import ParentalKey
 from wagtail.documents.models import Document
 
-
 class Epk(Page):
     quote_text = RichTextField(blank=True)
     quote_author = RichTextField(blank=True)
