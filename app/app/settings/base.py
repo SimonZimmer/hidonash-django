@@ -183,3 +183,4 @@ CORS_ORIGIN_WHITELIST = [
     'https://*.127.0.0.1',
     'https://95.179.203.207',
 ]
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

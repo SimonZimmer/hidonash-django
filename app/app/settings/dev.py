@@ -21,6 +21,8 @@ CORS_ORIGIN_WHITELIST = [
     'https://95.179.203.207',
 ]
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 try:
     from .local import *
 except ImportError:
