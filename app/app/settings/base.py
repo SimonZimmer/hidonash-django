@@ -172,3 +172,14 @@ WAGTAILADMIN_BASE_URL = "http://example.com"
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 SECRET_KEY = 'asuperS3cretK$yshouldgohere'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.hidonash.com',
+    'https://*.127.0.0.1',
+    'https://95.179.203.207',
+]
+CORS_ORIGIN_WHITELIST = [
+    'https://hidonash.com',
+    'https://*.127.0.0.1',
+    'https://95.179.203.207',
+]

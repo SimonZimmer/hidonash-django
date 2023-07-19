@@ -10,6 +10,17 @@ DEBUG = int(os.environ.get("DEBUG", default=0))
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.hidonash.com',
+    'https://*.127.0.0.1',
+    'https://95.179.203.207',
+]
+CORS_ORIGIN_WHITELIST = [
+    'https://hidonash.com',
+    'https://*.127.0.0.1',
+    'https://95.179.203.207',
+]
+
 try:
     from .local import *
 except ImportError:
