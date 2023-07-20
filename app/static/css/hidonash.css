@@ -65,11 +65,23 @@ h2 {
     width: 50%;
     float: left;
 }
+@media (max-width: 800px) {
+  .bio {
+    width: 100%;
+    float: none;
+  }
+}
 
 .image {
     width: 50%;
     float: right;
     position: relative;
+}
+@media (max-width: 800px) {
+  .image {
+    width: 100%;
+    float: none;
+  }
 }
 
 img {
@@ -79,7 +91,12 @@ img {
 
 .caption {
     transform: translateX(35%);
-    color: #333333;
+    color: #444444;
+}
+@media (max-width: 800px) {
+  .caption {
+    transform: translateX(35%);
+  }
 }
 
 /* Clear floats to ensure proper layout */

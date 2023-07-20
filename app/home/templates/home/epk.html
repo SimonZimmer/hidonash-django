@@ -10,8 +10,9 @@
 <div class='block intro'>
     {% include "home/components/quote.html" with quote_text=page.quote_text|richtext quote_author=page.quote_author|richtext %}
 
-    {% include "home/components/bio.html" with bio=page.bio|richtext %}
+    <h2>Bio</h2>
     {% include "home/components/image.html" with image=page.image rendition_url=page.rendition_url %}
+    {% include "home/components/bio.html" with bio=page.bio|richtext %}
 </div>
 
 <div class='block embeds'>
